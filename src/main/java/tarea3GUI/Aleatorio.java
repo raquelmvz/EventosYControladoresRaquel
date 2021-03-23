@@ -21,7 +21,8 @@ import javax.swing.JTextArea;
  */
 public class Aleatorio extends JPanel {
 
-    private JButton botonAleatorio;
+    private JButton botonNombre, botonApellidos, botonAleatorio;
+    private JTextArea texto;
     private JLabel etiqueta;
 
     public Aleatorio() {
@@ -29,6 +30,11 @@ public class Aleatorio extends JPanel {
     }
 
     private void initComponents() {
+
+        botonNombre = new JButton("Nombre");
+        botonApellidos = new JButton("Apellidos");
+        texto = new JTextArea(1, 30);
+        texto.setBackground(new Color(162, 201, 107));
 
         /* a. Incluye un botón nuevo, con el texto 
         "Generar Aleatorio". */
@@ -39,22 +45,73 @@ public class Aleatorio extends JPanel {
 
         this.setLayout(new FlowLayout());
 
+        this.add(botonNombre);
+        this.add(texto);
+        this.add(botonApellidos);
+
         this.add(botonAleatorio);
 
         this.add(etiqueta);
 
+        botonNombreActionPerformed(botonNombre);
+        botonApellidosActionPerformed(botonApellidos);
+        botonAleatorioActionPerformed(botonAleatorio);
+        botonAleatorioMouseListener(botonAleatorio);
+
+    }
+
+    /* Metodo que devuelve un aleatorio */
+    private String devuelveAleatorio(int n, int m) {
+        Random random = new Random();
+        return String.valueOf(random.nextInt(m - n + 1) + n);
+    }
+
+    private void botonNombreActionPerformed(JButton boton) {
+
+        boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                //si el boton pulsado es nombre
+                if (ae.getSource() == boton) {
+                    texto.setText("Raquel");
+                    //area del texto a blanco
+                    texto.setBackground(Color.WHITE);
+                }
+            }
+        });
+
+    }
+
+    private void botonApellidosActionPerformed(JButton boton) {
+
+        boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (ae.getSource() == boton) {
+                    texto.setText("Moyano Vázquez");
+                    //area del texto a azul
+                    texto.setBackground(new Color(144, 201, 240));
+                }
+            }
+        });
+    }
+
+    private void botonAleatorioActionPerformed(JButton boton) {
         /* c. Añade al botón "Generar Aleatorio" un controlador 
         de eventos, usando clases internas anónimas, de forma 
         que al pulsar sobre él, se genere un número aleatorio 
         entre 0 y 10 y se muestre en la etiqueta (JLabel) */
-        botonAleatorio.addActionListener(new ActionListener() {
+        boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 etiqueta.setText(devuelveAleatorio(0, 10));
             }
         });
+    }
 
-        botonAleatorio.addMouseListener(new MouseListener() {
+    private void botonAleatorioMouseListener(JButton boton) {
+
+        boton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -72,21 +129,15 @@ public class Aleatorio extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent me) {
-                botonAleatorio.setBackground(new Color(227, 170, 84));
+                boton.setBackground(new Color(227, 170, 84));
 
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
-                botonAleatorio.setBackground(null);
+                boton.setBackground(null);
             }
         });
-    }
-
-    /* Metodo que devuelve un aleatorio */
-    private String devuelveAleatorio(int n, int m) {
-        Random random = new Random();
-        return String.valueOf(random.nextInt(m - n + 1) + n);
     }
 
     public static void main(String[] args) {
