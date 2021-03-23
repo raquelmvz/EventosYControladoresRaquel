@@ -48,9 +48,7 @@ public class Aleatorio extends JPanel {
         this.add(botonNombre);
         this.add(texto);
         this.add(botonApellidos);
-
         this.add(botonAleatorio);
-
         this.add(etiqueta);
 
         botonNombreActionPerformed(botonNombre);
@@ -114,17 +112,17 @@ public class Aleatorio extends JPanel {
         boton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
             }
 
             @Override
             public void mousePressed(MouseEvent me) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
             }
 
             @Override
             public void mouseReleased(MouseEvent me) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
             }
 
             @Override
